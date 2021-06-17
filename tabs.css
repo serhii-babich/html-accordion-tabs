@@ -1,0 +1,26 @@
+:root {
+  --tab-button-order: 1;
+  --tab-content-order: 10;
+}
+
+.tab-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tab-actor {
+  display: none;
+}
+
+.tab-button {
+  order: var(--tab-button-order);
+}
+
+.tab-content {
+  order: var(--tab-content-order);
+  display: none;
+}
+
+.tab-actor:checked + .tab-button + .tab-content {
+  display: block;
+}
