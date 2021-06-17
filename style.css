@@ -15,10 +15,21 @@ body {
   transition: border-bottom-color 0.4s;
 }
 
-.tab-content {
+.content {
   padding: 16px;
 }
 
 .tab-actor:checked + .tab-button {
   border-bottom-color: rgb(82, 2, 136);
+}
+
+@media screen and (max-width: 480px) {
+  .tab-button {
+    border-bottom: 1px solid #ccc;
+    transition: none;
+  }
+
+  .tab-content {
+    background-color: ivory;
+  }
 }

@@ -24,3 +24,24 @@
 .tab-actor:checked + .tab-button + .tab-content {
   display: block;
 }
+
+@media screen and (max-width: 480px) {
+  .tab-button {
+    flex: 1 1 100%;
+  }
+
+  .tab-button,
+  .tab-content {
+    order: initial;
+  }
+
+  .tab-content {
+    display: block;
+    overflow: hidden;
+    height: 0;
+  }
+
+  .tab-actor:checked + .tab-button + .tab-content {
+    height: fit-content;
+  }
+}
