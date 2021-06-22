@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   max-width: 1280px;
@@ -31,5 +36,24 @@ body {
 
   .tab-content {
     background-color: ivory;
+  }
+
+  .tab-container.full-height {
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .tab-container.full-height .tab-button {
+    flex: none;
+  }
+
+  .tab-container.full-height .tab-content {
+    height: auto;
+    flex: 0;
+    transition: 300ms flex;
+  }
+
+  .tab-container.full-height .tab-actor:checked + .tab-button + .tab-content {
+    flex: 1;
   }
 }
