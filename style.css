@@ -43,13 +43,12 @@ body {
     flex-direction: column;
   }
 
-  .tab-container.full-height .tab-button {
-    flex: none;
-  }
-
   .tab-container.full-height .tab-content {
+    display: block;
     height: auto;
     flex: 0;
+    overflow: hidden;
+
     transition: 300ms flex;
   }
 
