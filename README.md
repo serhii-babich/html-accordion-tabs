@@ -13,7 +13,7 @@ We will use very simple HTML markup to define our accordion tabs:
 - `label.tab-button` — label linked to input, serving as tab button;
 - `.tab-content` — wrapper for any content you’ll feel worth putting into;
 
-So, the tiniest example ever will look like this:
+The tiniest example ever will look like this:
 
 ```html
 <div class="tab-container">
@@ -31,7 +31,7 @@ The main idea is to use the very simple yet powerful ability of HTML form contro
 
 To emulate tabs behaviour I need to be able to display only active tab content, and by active I mean one that is the closest adjacent to checked radio.
 
-And radio-button itself also should be hidden, leaving only the linked label to be visible and interactive. So, speaking briefly, this is how these tabs are intended to work. Let’s write some basic CSS code for our tabs.
+Radio-button itself also should be hidden, leaving only the linked label to be visible and interactive. Long story short, this is how these tabs are intended to work. Let’s write some basic CSS code for our tabs.
 
 ## Some basic code
 
@@ -64,7 +64,7 @@ And radio-button itself also should be hidden, leaving only the linked label to 
 }
 ```
 
-And let’s go through each rule to understand what happens.
+Let’s go through each rule to understand what happens.
 
 First of all, I decided to create some CSS variables for order property, so this is what is inside `:root` rule. We’ll get back to this a bit later.
 
@@ -77,7 +77,7 @@ First of all, I decided to create some CSS variables for order property, so this
 
 We are using flex layout as it’ll allow us to use an unknown amount of tabs because flex layout distributes its children automatically against fixed-width values we’ll need to put manually otherwise.
 
-By default all flex items are cramped in one line, but we need our tab buttons to be placed at top and content at bottom. Using flex-wrap: wrap will allow flex layout to put too big elements to next row.
+By default all flex items are cramped in one line, but we need our tab buttons to be placed at top and content at bottom. Using flex-wrap: wrap will allow flex layout to put large elements to next row.
 
 ```html
 <input type="radio" id="tab-1" name="tabs" class="tab-actor" checked />
@@ -109,7 +109,7 @@ But what we need is following:
 [content]
 ```
 
-To achieve our we will use an `order` CSS property which orders (no puns intended) in which order to render elements inside flex layout despite actual position in DOM-tree. So, the following code sets the order for `.tab-button` elements to be at the start of layout and `.tab-content` to be at:
+To achieve our goal we will use an `order` CSS property which orders (no puns intended) elements inside flex layout despite actual position in DOM-tree. The following code sets the order for `.tab-button` elements to be at the start of layout and `.tab-content` to be at:
 
 ```css
 .tab-button {
@@ -122,7 +122,7 @@ To achieve our we will use an `order` CSS property which orders (no puns intende
 }
 ```
 
-Also, `.tab-content` is hidden by default. We will unhide active tab content using following code:
+`.tab-content` is hidden by default. We will unhide active tab content using following code:
 
 ```css
 .tab-actor:checked + .tab-button + .tab-content {
@@ -130,13 +130,13 @@ Also, `.tab-content` is hidden by default. We will unhide active tab content usi
 }
 ```
 
-It’s a big selector, for sure, but it does all the magic. So, all content is hidden and we want to display only content corresponding to the activated tab button. This selector literally says following:
+It’s a big selector, for sure, but it does all the magic. All content is hidden and we want to display only content corresponding to the activated tab button. This selector literally says following:
 
 > Display content after button which follows checked input
 
 `+` combinator selects immediately adjacent elements, this is why our HTML code should follow this exact order.
 
-Also, there is another approach, using `~` combinator, which is also adjacent, but not strict and selects **all** matching adjacent elements. Using `~` at first glance will shorten the selector to:
+There is another approach, using `~` combinator, which is also adjacent, but not strict and selects **all** matching adjacent elements. Using `~` at first glance will shorten the selector to:
 
 ```css
 .tab-actor:checked ~ .tab-content {
@@ -147,6 +147,7 @@ Also, there is another approach, using `~` combinator, which is also adjacent, b
 but in this case first tab will activate all adjacent content, and to avoid this we’ll need to specify which tab displays which content:
 
 ```css
+/* Don't write code like this. Please. */
 .tab-actor.tab-1:checked ~ .tab-content.tab-1,
 .tab-actor.tab-2:checked ~ .tab-content.tab-2,
 .tab-actor.tab-3:checked ~ .tab-content.tab-3,
@@ -157,7 +158,7 @@ but in this case first tab will activate all adjacent content, and to avoid this
 
 Not that much optimization, to be honest.
 
-Ok, now we have actually working, ugly, but working tabs with pure CSS and HTML.
+Ok, now we have not that pretty, but actually working tabs with pure CSS and HTML.
 
 ## Music time!
 
@@ -197,7 +198,7 @@ That’s it. It just works.
 
 ## But wait! There is more!
 
-It’s all cool and great, but these tabs are booooring. So, let’s give them a bit of fanciness.
+It’s all cool and great, but these tabs are booooring. Let’s give them a bit of fanciness.
 
 ```css
 * {
@@ -231,7 +232,7 @@ body {
 }
 ```
 
-So, we added some paddings, colours and a bit of animation. Nice! Looks great now! But, as you can notice, content in «mobile» mode is switching extremely boring, without a spark of joy. Let’s add this spark then:
+We added some paddings, colours and a bit of animation. Nice! Looks great now! But, as you can notice, content in «mobile» mode is switching extremely boring, without a spark of joy. Let’s add this spark then:
 
 ```css
 @media screen and (max-width: 480px) {
@@ -290,8 +291,8 @@ Right here we are telling our accordion to occupy exactly full-screen height and
 }
 ```
 
-And now we are casting some magic on `.tab-content`, allowing it to expand and collapse with a neat animation.
+Now we are casting some magic on `.tab-content`, allowing it to expand and collapse with a neat animation.
 
 ## Epilogue
 
-And that’s, my friends, is how I met… Ah, sorry, it is how we did responsive tabs which switch to accordion layout on the fly without a single line of JS.
+That’s, my friends, is how I met… Ah, sorry, it is how we can make responsive tabs which switch to accordion layout on the fly without a single line of JS.
